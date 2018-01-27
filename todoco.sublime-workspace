@@ -1,0 +1,553 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"file",
+				"filename"
+			],
+			[
+				"ent",
+				"entities-path"
+			],
+			[
+				"update",
+				"updatedKeycloakUserItem"
+			],
+			[
+				"upda",
+				"updatedKeycloakUserItem"
+			],
+			[
+				"produc",
+				"productsFromCsv"
+			],
+			[
+				"prod",
+				"products"
+			],
+			[
+				"tempFi",
+				"tempFilePath"
+			],
+			[
+				"drop",
+				"dropzoneOptions〔variable〕"
+			],
+			[
+				"produ",
+				"products-list"
+			],
+			[
+				"pro",
+				"productsString"
+			],
+			[
+				"imp",
+				"import-products"
+			],
+			[
+				"render",
+				"render-products-dropzone"
+			],
+			[
+				"crea",
+				"createdUserId"
+			],
+			[
+				"ad",
+				"add-realm-roles-to-new-user"
+			],
+			[
+				"suc",
+				"successfulRequest"
+			],
+			[
+				"er",
+				"errorMessage"
+			],
+			[
+				"add",
+				"addRealmRoles"
+			],
+			[
+				"realmR",
+				"realmRole"
+			],
+			[
+				"U",
+				"UserId"
+			],
+			[
+				"real",
+				"realmRoles"
+			],
+			[
+				"me",
+				"media-type"
+			],
+			[
+				"se",
+				"send-request"
+			],
+			[
+				"parm",
+				"parameter"
+			],
+			[
+				"app",
+				"application"
+			],
+			[
+				"rese",
+				"reset-user-password"
+			],
+			[
+				"up",
+				"updateUserWithRolesAndActions"
+			],
+			[
+				"rqu",
+				"requiredActions"
+			],
+			[
+				"jso",
+				"jsonXml"
+			],
+			[
+				"gitl",
+				"gitlab_url_prefix"
+			],
+			[
+				"resto",
+				"restoreGlobal〔function〕"
+			],
+			[
+				"write",
+				"writeGlobalJson"
+			],
+			[
+				"pathtogl",
+				"pathToGlobalBackup〔variable〕"
+			],
+			[
+				"path",
+				"pathToGlobalBackup〔variable〕"
+			],
+			[
+				"pathT",
+				"pathtoGlobal〔variable〕"
+			],
+			[
+				"exis",
+				"fs.existsSync(path);"
+			],
+			[
+				"compi",
+				"compileGlobalTemplate〔function〕"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/User/basex.sublime-build",
+					""
+				],
+				[
+					"Packages/User/C#.sublime-build",
+					""
+				],
+				[
+					"Packages/User/C#.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/User/C#.sublime-build",
+					"ReBuild"
+				],
+				[
+					"Packages/User/Swift.sublime-build",
+					""
+				],
+				[
+					"Packages/User/xquery-docs-test.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/basex.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 217.0,
+		"last_filter": "markpre",
+		"selected_items":
+		[
+			[
+				"markpre",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"set syn ma",
+				"Set Syntax: Markdown Extended"
+			],
+			[
+				"sy",
+				"Set Syntax: Markdown"
+			],
+			[
+				"mar ch",
+				"Markdown Preview: Open Markdown Cheat sheet"
+			],
+			[
+				"mar",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"git ad",
+				"Git: Add Current File"
+			],
+			[
+				"git rebas",
+				"Git: Pull Using Rebase"
+			],
+			[
+				"git fet",
+				"Git: Fetch"
+			],
+			[
+				"git sho file",
+				"Git: Show Previous Version of Current File"
+			],
+			[
+				"sesyxq",
+				"Set Syntax: XQuery"
+			],
+			[
+				"prett",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"walj",
+				"Wallaby.js: Jump to error source"
+			],
+			[
+				"wall ser",
+				"Wallaby.js: Show Uncovered Regions"
+			],
+			[
+				"wall",
+				"Wallaby.js: Start"
+			],
+			[
+				"json val",
+				"Pretty JSON: Validate"
+			],
+			[
+				"json in",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"inden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"pret",
+				"Pretty JSON: Validate"
+			],
+			[
+				"set sy xq",
+				"Set Syntax: XQuery"
+			],
+			[
+				"syjso",
+				"Set Syntax: JSON"
+			],
+			[
+				"set sy bas",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"html",
+				"HTMLPrettify"
+			],
+			[
+				"inde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"wal ",
+				"Wallaby.js: Toggle Tests View"
+			],
+			[
+				"was",
+				"Wallaby.js: Start"
+			],
+			[
+				"theme",
+				"UI: Select Theme"
+			],
+			[
+				"set sy ba",
+				"Set Syntax: Shell Script (Bash)"
+			],
+			[
+				"pack",
+				"Install Package Control"
+			],
+			[
+				"togl st",
+				"View: Toggle Status Bar"
+			]
+		],
+		"width": 544.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/meischner/Projects/privat/todoco"
+	],
+	"file_history":
+	[
+		"/Users/meischner/.ssh/id_rsa.pub",
+		"/Users/meischner/Projects/privat/QuickRunner/install.sh",
+		"/Users/meischner/Projects/privat/QuickRunner/Tests/HelperTests/ScriptHelperTests.swift",
+		"/Users/meischner/Projects/privat/QuickRunner/README.md",
+		"/Users/meischner/Desktop/Bildschirmfoto 2018-01-27 um 08.56.13.png",
+		"/Users/meischner/Desktop/Bildschirmfoto 2018-01-27 um 08.55.45.png",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/influx_app/modules/kam-tool/translations.xml",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/influx_app/modules/kam-tool/kam-tool-import.xqm",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/influx_app/modules/kam-tool/views/choose-columns/entities/entities.csv",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/influx_app/modules/kam-tool/static/js/choose-columns.js",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/influx_app/modules/kam-tool/views/choose-values/choose-values-api.xqm",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/influx_app/modules/kam-tool/kam-tool-requests.xqm",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/influx_app/modules/kam-tool/views/choose-columns/choose-column.xqm",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/influx_app/modules/kam-tool/static/js/choose-values.js",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/influx_app/modules/kam-tool/views/choose-columns/choose-column-provider.xqm",
+		"/Users/meischner/Projects/adesso/influx/ansible-influx-manager/.git/COMMIT_EDITMSG",
+		"/Users/meischner/Projects/adesso/influx/ansible-influx-manager/release/composition.yml",
+		"/Users/meischner/Projects/adesso/influx/ansible-influx-manager/influx_playbook.yml",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/repo/influx/global.xqm",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/core/user-manager/resources/groups-resource.xqm",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/core/user-manager/keycloak-connector.xqm",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/scripts/build-docker-images.sh",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/core/user-manager/tests/unit/get-groups-test.xqm",
+		"/Users/meischner/Downloads/realm-export-2.json",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/influx_app/modules/kam-tool/static/produkte.csv",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/influx_app/modules/kam-tool/views/import-products/product-import-api.xqm",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/influx_app/modules/kam-tool/sales-cockpit-import.xqm",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/influx_app/modules/kam-tool/views/importer.xqm",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/influx_app/modules/kam-tool/sales-cockpit-requests.xqm",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/core/user-manager/translations.xml",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/influx.sh",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/core/user-manager/import.xqm",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/core/user-manager/resources/create-user-resource.xqm",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/webapp/core/user-manager/resources/users-resource.xqm",
+		"/Users/meischner/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/docker/config/keycloak/influx-realm.json",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/docker/config/keycloak/keycloak-add-user.json",
+		"/Users/meischner/Projects/adesso/influx/scripts/.git/COMMIT_EDITMSG",
+		"/Users/meischner/Projects/adesso/influx/scripts/test.xq",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/repo/keycloak/credential.xqm",
+		"/Users/meischner/Projects/adesso/influx/Projekte/sanofi/influx.",
+		"/Users/meischner/Projects/adesso/influx/scripts/README.md",
+		"/Users/meischner/Projects/adesso/influx/scripts/converter/kam-tool-user-csv-to-json/csv-to-json.xq",
+		"/Users/meischner/Projects/adesso/influx/scripts/converter/kam-tool-user-csv-to-json/ReadMe.md",
+		"/Users/meischner/Projects/adesso/influx/scripts/converter/kam-tool-user-csv-to-json/result.json",
+		"/Users/meischner/Projects/adesso/influx/scripts/converter/kam-tool-user-csv-to-json/user.csv",
+		"/Users/meischner/Projects/adesso/influx/scripts/converter/csv-to-json.xq",
+		"/Users/meischner/Projects/adesso/influx/ansible-influx-manager/environment.yml",
+		"/Users/meischner/Projects/adesso/influx/ansible-influx-manager/composition.yml",
+		"/Users/meischner/Projects/adesso/influx/util/temp.xq",
+		"/Users/meischner/Projects/adesso/influx/util/wissensnetz-hierarchy-builder/builder.xq",
+		"/Users/meischner/.dotfiles/sublime/User/basex.sublime-build",
+		"/Users/meischner/Projects/privat/ToDoCo/CLI/src/output/to/taskpaper.js",
+		"/Users/meischner/Projects/privat/ToDoCo/CLI/src/logging/list-options.js",
+		"/Users/janmeischner/Projects/adesso/influx-cli/.git/COMMIT_EDITMSG",
+		"/Users/janmeischner/Projects/adesso/influx-cli/features/influx-global/global.json",
+		"/Users/janmeischner/Projects/adesso/influx-cli/features/config/config.js",
+		"/Users/janmeischner/Projects/adesso/influx-cli/features/config/config.json",
+		"/Users/janmeischner/Projects/adesso/influx-cli/.gitignore",
+		"/Users/janmeischner/Projects/adesso/influx-cli/features/influx-global/global.template",
+		"/Users/janmeischner/Projects/adesso/influx/.git/COMMIT_EDITMSG",
+		"/Users/janmeischner/Projects/adesso/influx/base/influx-web/repo/influx/global.xqm",
+		"/Users/janmeischner/Projects/adesso/influx/base/influx-web/repo/influx/modules.xqm",
+		"/Users/janmeischner/.dotfiles/system/path.zsh",
+		"/Users/janmeischner/.dotfiles/java/path.zsh",
+		"/etc/hosts",
+		"/Users/janmeischner/.dotfiles/.git/COMMIT_EDITMSG",
+		"/Users/janmeischner/.dotfiles/zsh/zshrc.symlink",
+		"/Users/janmeischner/.oh-my-zsh/oh-my-zsh.sh",
+		"/Volumes/home/für Paula LIDL/Contents/Resources/sync/webapp/scripts/Intl.js",
+		"/Volumes/home/für Paula LIDL/Contents/Resources/sync/webapp/scripts/partials.js",
+		"/Users/janmeischner/.dotfiles/Brewfile",
+		"/Users/janmeischner/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings"
+	],
+	"find":
+	{
+		"height": 48.0
+	},
+	"find_in_files":
+	{
+		"height": 132.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 454.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 112.0
+	},
+	"output.mdpopups":
+	{
+		"height": 0.0
+	},
+	"output.wallabyjs":
+	{
+		"height": 0.0
+	},
+	"output.wallabyjs_console":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "todoco.sublime-project",
+	"replace":
+	{
+		"height": 40.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 215.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

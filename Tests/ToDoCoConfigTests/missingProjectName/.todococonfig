@@ -1,0 +1,11 @@
+# Config File for ToDoCo
+project:
+  author: Jan Meischner
+
+files:
+  useGitignore: true
+  ignore:
+    - node_modules/**/*
+    - src/extracting/regex.js
+  add:
+    - .todococonfig

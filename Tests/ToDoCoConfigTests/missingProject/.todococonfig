@@ -1,0 +1,8 @@
+# Config File for ToDoCo
+files:
+  useGitignore: true
+  ignore:
+    - node_modules/**/*
+    - src/extracting/regex.js
+  add:
+    - .todococonfig
