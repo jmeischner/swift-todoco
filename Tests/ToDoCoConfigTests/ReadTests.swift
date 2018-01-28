@@ -7,7 +7,7 @@ class ReadConfigFile: QuickSpec {
     override func spec() {
         describe("Read a valid todococonfig file") {
             it("should result in a valid ToDoCoConfig instance") {
-                let config = ToDoCoReader.readConfigFile(at: "Tests/ToDoCoConfigTests/fullConfig")
+                let config = ToDoCoConfigReader.readConfigFile(at: "Tests/ToDoCoConfigTests/fullConfig")
 
                 expect(config.project.name).to(equal("ToDoCo"))
                 expect(config.project.author).to(equal("Jan Meischner"))
@@ -21,21 +21,21 @@ class ReadConfigFile: QuickSpec {
 
             context("with missing fields") {
                 it("should fill project name with empty string") {
-                    let config = ToDoCoReader.readConfigFile(at: "Tests/ToDoCoConfigTests/missingProjectName")
+                    let config = ToDoCoConfigReader.readConfigFile(at: "Tests/ToDoCoConfigTests/missingProjectName")
 
                     expect(config.project.name).to(equal(""))
                     expect(config.project.author).to(equal("Jan Meischner"))
                 }
 
                 it("should fill project with empty ToDoCoProject") {
-                    let config = ToDoCoReader.readConfigFile(at: "Tests/ToDoCoConfigTests/missingProject")
+                    let config = ToDoCoConfigReader.readConfigFile(at: "Tests/ToDoCoConfigTests/missingProject")
 
                     expect(config.project.name).to(equal(""))
                     expect(config.project.author).to(equal(""))
                 }
 
                 it("should fill files with empty ToDoCoFiles") {
-                    let config = ToDoCoReader.readConfigFile(at: "Tests/ToDoCoConfigTests/missingFiles")
+                    let config = ToDoCoConfigReader.readConfigFile(at: "Tests/ToDoCoConfigTests/missingFiles")
 
                     expect(config.project.name).to(equal("ToDoCo"))
                     expect(config.project.author).to(equal("Jan Meischner"))
@@ -48,7 +48,7 @@ class ReadConfigFile: QuickSpec {
 
         describe("Return a default ToDoCoConfig") {
             it("if no file is there") {
-                let config = ToDoCoReader.readConfigFile(at: "Test/ToDoCoConfigTests/noConfigFile")
+                let config = ToDoCoConfigReader.readConfigFile(at: "Test/ToDoCoConfigTests/noConfigFile")
 
                 expect(config.project.name).to(equal(""))
                 expect(config.project.author).to(equal(""))

@@ -2,15 +2,13 @@ import Foundation
 import Rainbow
 import Yaml
 
-typealias PlainConfig = [String: [String: [String]]]
-
 /**
-  # ToDoCoReader
+  # ToDoCoConfigReader
 
   A static class which is responsible for reading
   and parsing the config file of an ToDoco Project
 */
-public final class ToDoCoReader {
+public final class ToDoCoConfigReader {
 
   /**
     # readConfigFile
@@ -21,7 +19,7 @@ public final class ToDoCoReader {
     - Parameter at: Path to the Project directory
     - Returns: ToDoCoConfig instance
   */
-  public class func readConfigFile(at path: String = ".") -> ToDoCoConfig {
+  public class func readConfigFile(at path: String = ".") throws -> ToDoCoConfig? {
     let filepath = path + "/" + ToDoCoNames.configFile.rawValue
 
     var fileContent = ""
@@ -29,9 +27,10 @@ public final class ToDoCoReader {
     do {
       fileContent = try String(contentsOf: URL(fileURLWithPath: filepath))
     } catch {
-      print("Info: No \(ToDoCoNames.configFile.rawValue) found at \(path), thus use default configuration.".yellow)
+      throw ToDoCoConfigError.ProjectDirectoryDoesNotExist
     } 
 
+    // Todo: Test if the yaml itself is broken
     let config = try! Yaml.load(fileContent)
     
     return serialize(yaml:config)
