@@ -7,17 +7,27 @@ let main = Group {
     description: "Initialize a new todoco project."
   ) { path in
 
+    let config: ToDoCoConfig = ToDoCoConfig()
+    do {
+      try ToDoCoConfigWriter.write(toPath: path, config: config)
+    } catch ToDoCoConfigError.ConfigFileAlreadyExist {
+      print("Error: \(path) seems to be already a todoco project.".red)
+    }
+  };
+
+  $0.command("show",
+    Option("path", default: ".", description: "Path to the new todoco project."),
+    description: "Initialize a new todoco project."
+  ) { path in
     var config: ToDoCoConfig = ToDoCoConfig()
 
     do {
-      if let tryConfig = try ToDoCoConfigReader.readConfigFile(at: path) {
-        config = tryConfig
-      }
+      config = try ToDoCoConfigReader.readConfigFile(atPath: path)
     } catch ToDoCoConfigError.ProjectDirectoryDoesNotExist {
       print("Info: No \(ToDoCoNames.configFile.rawValue) found at '\(path)', thus use default configuration.".yellow)
     }
 
-    print(config.project.author)
+    print(config.toYaml())
   }
 }
 

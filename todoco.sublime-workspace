@@ -4,6 +4,42 @@
 		"selected_items":
 		[
 			[
+				"To",
+				"ToDoCoConfigDefaults"
+			],
+			[
+				"conf",
+				"configFile"
+			],
+			[
+				"ToDoCoCon",
+				"ToDoCoConfigTests"
+			],
+			[
+				"toIgn",
+				"toIgnoreArray"
+			],
+			[
+				"Todo",
+				"ToDoCoReader"
+			],
+			[
+				"mer",
+				"mergedArray"
+			],
+			[
+				"yaml",
+				"yamlValue"
+			],
+			[
+				"ToDo",
+				"ToDoCoConfig"
+			],
+			[
+				"depend",
+				"dependencies"
+			],
+			[
 				"file",
 				"filename"
 			],
@@ -152,9 +188,49 @@
 	"buffers":
 	[
 	],
-	"build_system": "",
+	"build_system": "Packages/User/Swift.sublime-build",
 	"build_system_choices":
 	[
+		[
+			[
+				[
+					"Packages/User/basex.sublime-build",
+					""
+				],
+				[
+					"Packages/User/C#.sublime-build",
+					""
+				],
+				[
+					"Packages/User/C#.sublime-build",
+					"Clean"
+				],
+				[
+					"Packages/User/C#.sublime-build",
+					"ReBuild"
+				],
+				[
+					"Packages/User/Swift.sublime-build",
+					""
+				],
+				[
+					"Packages/User/Swift.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/User/Swift.sublime-build",
+					"Tests"
+				],
+				[
+					"Packages/User/xquery-docs-test.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/User/Swift.sublime-build",
+				"Tests"
+			]
+		],
 		[
 			[
 				[
@@ -191,10 +267,26 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 217.0,
-		"last_filter": "markpre",
+		"height": 247.0,
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"pack con in",
+				"Package Control: Install Package"
+			],
+			[
+				"packconre",
+				"Package Control: Remove Package"
+			],
+			[
+				"setsy",
+				"Set Syntax: YAML"
+			],
+			[
+				"set sy a",
+				"Set Syntax: YAML"
+			],
 			[
 				"markpre",
 				"Markdown Preview: Preview in Browser"
@@ -312,7 +404,7 @@
 				"View: Toggle Status Bar"
 			]
 		],
-		"width": 544.0
+		"width": 670.0
 	},
 	"console":
 	{
@@ -332,10 +424,27 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/meischner/Projects/privat/todoco"
+		"/Users/meischner/Projects/privat/todoco",
+		"/Users/meischner/Projects/privat/todoco/Sources",
+		"/Users/meischner/Projects/privat/todoco/Sources/ToDoCo",
+		"/Users/meischner/Projects/privat/todoco/Sources/ToDoCoConfig",
+		"/Users/meischner/Projects/privat/todoco/Tests",
+		"/Users/meischner/Projects/privat/todoco/Tests/ToDoCoConfigTests"
 	],
 	"file_history":
 	[
+		"/Users/meischner/Projects/privat/todoco/Sources/ToDoCoConfig/ToDoCoConfig.swift",
+		"/Users/meischner/Projects/privat/todoco/Tests/ToDoCoConfigTests/missingProject/.todococonfig",
+		"/Users/meischner/Projects/privat/todoco/Tests/ToDoCoConfigTests/ReadTests.swift",
+		"/Users/meischner/Projects/privat/todoco/Sources/ToDoCoConfig/ToDoCoNames.swift",
+		"/Users/meischner/Projects/privat/todoco/Package.swift",
+		"/Users/meischner/Projects/privat/todoco/Sources/ToDoCoConfig/ToDoCoReader.swift",
+		"/Users/meischner/.dotfiles/sublime/User/Swift.sublime-build",
+		"/Users/meischner/Projects/privat/todoco/Tests/ToDoCoConfigTests/missingFiles/.todococonfig",
+		"/Users/meischner/Projects/privat/todoco/Tests/ToDoCoConfigTests/missingProjectName/.todococonfig",
+		"/Users/meischner/Projects/privat/todoco/Sources/ToDoCo/main.swift",
+		"/Users/meischner/Projects/privat/todoco/Tests/ToDoCoConfigTests/fullConfig/.todococonfig",
+		"/Users/meischner/Projects/privat/todoco/.todococonfig",
 		"/Users/meischner/.ssh/id_rsa.pub",
 		"/Users/meischner/Projects/privat/QuickRunner/install.sh",
 		"/Users/meischner/Projects/privat/QuickRunner/Tests/HelperTests/ScriptHelperTests.swift",
@@ -481,7 +590,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 454.0
+		"height": 311.0
 	},
 	"output.find_results":
 	{
@@ -494,6 +603,10 @@
 	"output.mdpopups":
 	{
 		"height": 0.0
+	},
+	"output.nodejs":
+	{
+		"height": 112.0
 	},
 	"output.wallabyjs":
 	{

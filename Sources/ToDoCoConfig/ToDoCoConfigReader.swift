@@ -19,7 +19,7 @@ public final class ToDoCoConfigReader {
     - Parameter at: Path to the Project directory
     - Returns: ToDoCoConfig instance
   */
-  public class func readConfigFile(at path: String = ".") throws -> ToDoCoConfig? {
+  public class func readConfigFile(atPath path: String = ".") throws -> ToDoCoConfig {
     let filepath = path + "/" + ToDoCoNames.configFile.rawValue
 
     var fileContent = ""

@@ -7,7 +7,7 @@ class ReadConfigFile: QuickSpec {
     override func spec() {
         describe("Read a valid todococonfig file") {
             it("should result in a valid ToDoCoConfig instance") {
-                let config = ToDoCoConfigReader.readConfigFile(at: "Tests/ToDoCoConfigTests/fullConfig")
+                let config = try! ToDoCoConfigReader.readConfigFile(atPath: "Tests/ToDoCoConfigTests/fullConfig")
 
                 expect(config.project.name).to(equal("ToDoCo"))
                 expect(config.project.author).to(equal("Jan Meischner"))
@@ -21,21 +21,21 @@ class ReadConfigFile: QuickSpec {
 
             context("with missing fields") {
                 it("should fill project name with empty string") {
-                    let config = ToDoCoConfigReader.readConfigFile(at: "Tests/ToDoCoConfigTests/missingProjectName")
+                    let config = try! ToDoCoConfigReader.readConfigFile(atPath: "Tests/ToDoCoConfigTests/missingProjectName")
 
                     expect(config.project.name).to(equal(""))
                     expect(config.project.author).to(equal("Jan Meischner"))
                 }
 
                 it("should fill project with empty ToDoCoProject") {
-                    let config = ToDoCoConfigReader.readConfigFile(at: "Tests/ToDoCoConfigTests/missingProject")
+                    let config = try! ToDoCoConfigReader.readConfigFile(atPath: "Tests/ToDoCoConfigTests/missingProject")
 
                     expect(config.project.name).to(equal(""))
                     expect(config.project.author).to(equal(""))
                 }
 
                 it("should fill files with empty ToDoCoFiles") {
-                    let config = ToDoCoConfigReader.readConfigFile(at: "Tests/ToDoCoConfigTests/missingFiles")
+                    let config = try! ToDoCoConfigReader.readConfigFile(atPath: "Tests/ToDoCoConfigTests/missingFiles")
 
                     expect(config.project.name).to(equal("ToDoCo"))
                     expect(config.project.author).to(equal("Jan Meischner"))
@@ -46,9 +46,10 @@ class ReadConfigFile: QuickSpec {
             }
         };
 
+        // Todo: Try Catch when file existiert nicht
         describe("Return a default ToDoCoConfig") {
             it("if no file is there") {
-                let config = ToDoCoConfigReader.readConfigFile(at: "Test/ToDoCoConfigTests/noConfigFile")
+                let config = try! ToDoCoConfigReader.readConfigFile(atPath: "Test/ToDoCoConfigTests/noConfigFile")
 
                 expect(config.project.name).to(equal(""))
                 expect(config.project.author).to(equal(""))

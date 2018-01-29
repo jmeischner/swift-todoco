@@ -29,6 +29,6 @@ let package = Package(
             dependencies: ["Yaml", "Rainbow", "Yams"]),
         .testTarget(
             name: "ToDoCoConfigTests",
-            dependencies: ["Quick", "Nimble", "ToDoCoConfig"])
+            dependencies: ["Quick", "Nimble", "ToDoCoConfig", "Yaml"])
     ]
 )
