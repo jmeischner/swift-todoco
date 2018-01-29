@@ -11,7 +11,7 @@ let main = Group {
     do {
       try ToDoCoConfigWriter.write(toPath: path, config: config)
     } catch ToDoCoConfigError.ConfigFileAlreadyExist {
-      print("Error: \(path) seems to be already a todoco project.".red)
+      print("Error: '\(path)' seems to be already a todoco project.".red)
     }
   };
 
@@ -23,7 +23,7 @@ let main = Group {
 
     do {
       config = try ToDoCoConfigReader.readConfigFile(atPath: path)
-    } catch ToDoCoConfigError.ProjectDirectoryDoesNotExist {
+    } catch ToDoCoConfigError.DirectoryIsNoToDoCoProject {
       print("Info: No \(ToDoCoNames.configFile.rawValue) found at '\(path)', thus use default configuration.".yellow)
     }
 

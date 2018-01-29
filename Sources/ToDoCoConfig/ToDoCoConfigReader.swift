@@ -27,7 +27,7 @@ public final class ToDoCoConfigReader {
     do {
       fileContent = try String(contentsOf: URL(fileURLWithPath: filepath))
     } catch {
-      throw ToDoCoConfigError.ProjectDirectoryDoesNotExist
+      throw ToDoCoConfigError.DirectoryIsNoToDoCoProject
     } 
 
     // Todo: Test if the yaml itself is broken
