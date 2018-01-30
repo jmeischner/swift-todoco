@@ -13,7 +13,7 @@ let main = Group {
     } catch ToDoCoConfigError.ConfigFileAlreadyExist {
       print("Error: '\(path)' seems to be already a todoco project.".red)
     }
-  };
+  }
 
   $0.command("show",
     Option("path", default: ".", description: "Path to the new todoco project."),
