@@ -1,4 +1,5 @@
 import ToDoCoConfig
+import CLQuestions
 import Commander
 
 let main = Group {
@@ -28,6 +29,20 @@ let main = Group {
     }
 
     print(config.toYaml())
+  }
+
+  $0.command("test") {
+    let q1 = Question<String>(text: "Wie heißt du?", type: .text, defaultAnswer: "Peter")
+    let name = q1.ask()
+
+    let q2 = Question<Bool>(text: "Bist du groß?", type: .bool)
+    let groß = q2.ask()
+
+    if groß ?? false {
+      print("Du Riese")
+    }
+
+    print("Hallo \(name!)!")
   }
 }
 

@@ -28,12 +28,12 @@ public final class ToDoCoConfigReader {
       fileContent = try String(contentsOf: URL(fileURLWithPath: filepath))
     } catch {
       throw ToDoCoConfigError.DirectoryIsNoToDoCoProject
-    } 
+    }
 
     // Todo: Test if the yaml itself is broken
     let config = try! Yaml.load(fileContent)
-    
-    return serialize(yaml:config)
+
+    return serialize(yaml: config)
   }
 
   /**
@@ -51,9 +51,9 @@ public final class ToDoCoConfigReader {
     let name = yaml["project"]["name"].string
     let author = yaml["project"]["author"].string
     let useGitignore = yaml["files"]["useGitignore"].bool
-    let toIgnore = unwrap(array: yaml["files"]["ignore"])  
+    let toIgnore = unwrap(array: yaml["files"]["ignore"])
     let toAdd = unwrap(array: yaml["files"]["add"])
-    
+
     let project = ToDoCoProject(name: name, author: author)
     let files = ToDoCoFiles(useGitignore: useGitignore, toIgnore: toIgnore, toAdd: toAdd)
 
@@ -61,11 +61,11 @@ public final class ToDoCoConfigReader {
   }
 
   class func unwrap(array: Yaml) -> [String]? {
-    var result:[String]? = nil
+    var result: [String]? = nil
     if let arrayUnwrapped = array.array {
-      result = arrayUnwrapped.map{(ele) in 
+      result = arrayUnwrapped.map { (ele) in
         if let e = ele.string {
-          return e 
+          return e
         } else {
           return ""
         }

@@ -1,11 +1,11 @@
 import Foundation
 
-let ToDoCoConfigDefaults: [String: Any]  = [
-  "name": "Project Name",
-  "author": "Project Author",
-  "useGitignore": false,
-  "toIgnore": [],
-  "toAdd": ["**"]
+let toDoCoConfigDefaults: [String: Any]  = [
+  "name": "Project Name" as String,
+  "author": "Project Author" as String,
+  "useGitignore": false as Bool,
+  "toIgnore": [] as [String],
+  "toAdd": ["**"] as [String]
 ]
 
 public class ToDoCoConfig {
@@ -30,13 +30,13 @@ public class ToDoCoProject {
   public let author: String
 
   public init() {
-    self.name = ToDoCoConfigDefaults["name"] as! String
-    self.author = ToDoCoConfigDefaults["author"] as! String
+    self.name = toDoCoConfigDefaults["name"] as! String
+    self.author = toDoCoConfigDefaults["author"] as! String
   }
 
   public init(name: String?, author: String?) {
-    if let n = name { self.name = n } else { self.name = ToDoCoConfigDefaults["name"] as! String }
-    if let a = author { self.author = a } else { self.author = ToDoCoConfigDefaults["author"] as! String }
+    if let n = name { self.name = n } else { self.name = toDoCoConfigDefaults["name"] as! String }
+    if let a = author { self.author = a } else { self.author = toDoCoConfigDefaults["author"] as! String }
   }
 
   public func toYaml() -> String {
@@ -54,15 +54,29 @@ public class ToDoCoFiles {
   public let toAdd: [String]
 
   public init() {
-    self.useGitignore = ToDoCoConfigDefaults["useGitignore"] as! Bool
-    self.toIgnore = ToDoCoConfigDefaults["toIgnore"] as! Array<String>
-    self.toAdd = ToDoCoConfigDefaults["toAdd"] as! Array<String>
+    self.useGitignore = toDoCoConfigDefaults["useGitignore"] as! Bool
+    self.toIgnore = toDoCoConfigDefaults["toIgnore"] as! Array<String>
+    self.toAdd = toDoCoConfigDefaults["toAdd"] as! Array<String>
   }
 
   public init(useGitignore: Bool?, toIgnore: [String]?, toAdd: [String]?) {
-    if let ug = useGitignore { self.useGitignore = ug } else { self.useGitignore = ToDoCoConfigDefaults["useGitignore"] as! Bool }
-    if let ti = toIgnore { self.toIgnore = ti } else { self.toIgnore = ToDoCoConfigDefaults["toIgnore"] as! Array<String> }
-    if let ta = toAdd { self.toAdd = ta } else { self.toAdd = ToDoCoConfigDefaults["toAdd"] as! Array<String> }
+    if let ug = useGitignore {
+      self.useGitignore = ug
+    } else {
+      self.useGitignore = toDoCoConfigDefaults["useGitignore"] as! Bool
+    }
+
+    if let ti = toIgnore {
+      self.toIgnore = ti
+    } else {
+      self.toIgnore = toDoCoConfigDefaults["toIgnore"] as! Array<String>
+    }
+
+    if let ta = toAdd {
+      self.toAdd = ta
+    } else {
+      self.toAdd = toDoCoConfigDefaults["toAdd"] as! Array<String>
+    }
   }
 
   public func toYaml() -> String {

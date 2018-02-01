@@ -23,12 +23,18 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
             name: "ToDoCo",
-            dependencies: ["ToDoCoConfig", "Commander"]),
+            dependencies: ["ToDoCoConfig", "Commander", "CLQuestions"]),
         .target(
             name: "ToDoCoConfig",
             dependencies: ["Yaml", "Rainbow", "Yams"]),
         .testTarget(
             name: "ToDoCoConfigTests",
-            dependencies: ["Quick", "Nimble", "ToDoCoConfig", "Yaml"])
+            dependencies: ["Quick", "Nimble", "ToDoCoConfig", "Yaml"]),
+        .target(
+            name: "CLQuestions",
+            dependencies: []),
+        .testTarget(
+            name: "CLQuestionsTests",
+            dependencies: ["Quick", "Nimble", "CLQuestions"])
     ]
 )
