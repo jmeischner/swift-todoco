@@ -1,6 +1,7 @@
 import ToDoCoConfig
 import CLQuestions
 import Commander
+import Foundation
 
 let main = Group {
   $0.command("init",
@@ -8,7 +9,29 @@ let main = Group {
     description: "Initialize a new todoco project."
   ) { path in
 
-    let config: ToDoCoConfig = ToDoCoConfig()
+    let folderName = URL(fileURLWithPath: path).lastPathComponent
+
+    let name = Question<String>(
+      text: "What's your name?",
+      type: .text
+    ).ask()
+
+    let project = Question<String>(
+      text: "What's the name of this project?",
+      type: .text,
+      defaultAnswer: folderName
+    ).ask()
+
+    let useGitignore = Question<Bool>(
+      text: "Do you want to use the .gitignore?",
+      type: .bool,
+      defaultAnswer: false
+    ).ask()
+    
+    let todoProject = ToDoCoProject(name: project, author: name)
+    let todoFiles = ToDoCoFiles(useGitignore: useGitignore)
+
+    let config: ToDoCoConfig = ToDoCoConfig(project: todoProject, files: todoFiles)
     do {
       try ToDoCoConfigWriter.write(toPath: path, config: config)
     } catch ToDoCoConfigError.ConfigFileAlreadyExist {
@@ -29,20 +52,6 @@ let main = Group {
     }
 
     print(config.toYaml())
-  }
-
-  $0.command("test") {
-    let q1 = Question<String>(text: "Wie heißt du?", type: .text, defaultAnswer: "Peter")
-    let name = q1.ask()
-
-    let q2 = Question<Bool>(text: "Bist du groß?", type: .bool)
-    let groß = q2.ask()
-
-    if groß ?? false {
-      print("Du Riese")
-    }
-
-    print("Hallo \(name!)!")
   }
 }
 

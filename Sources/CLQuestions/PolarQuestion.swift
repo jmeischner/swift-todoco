@@ -4,19 +4,26 @@ extension Question {
         var questionEnding = "(y/n)"
 
         let defAns = defaultAnswer as? Bool
+        var defaultA = false
 
         if let def = defAns {
             if def {
                 questionEnding = "(Y/n)"
+                defaultA = true
             } else {
                 questionEnding = "(y/N)"
+                defaultA = false
             }
         }
 
         print("\(text) \(questionEnding)")
 
         if let answer = readLine() {
-            return test(answer: answer)
+            if answer == "" {
+                return defaultA
+            } else {
+                return test(answer: answer)
+            }
         } else {
             return false
         }

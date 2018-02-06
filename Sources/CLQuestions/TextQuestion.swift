@@ -1,6 +1,15 @@
 extension Question {
     func askText() -> String? {
-        print(text)
+
+        var questionText = text
+
+        let defAns = defaultAnswer as? String
+
+        if let def = defAns {
+            questionText += " (\(def))"
+        }
+
+        print(questionText)
 
         if let answer = readLine() {
             if answer.isEmpty {

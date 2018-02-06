@@ -59,6 +59,17 @@ public class ToDoCoFiles {
     self.toAdd = toDoCoConfigDefaults["toAdd"] as! Array<String>
   }
 
+  public init(useGitignore: Bool?) {
+    if let ug = useGitignore {
+      self.useGitignore = ug
+    } else {
+      self.useGitignore = toDoCoConfigDefaults["useGitignore"] as! Bool
+    }
+
+    self.toIgnore = toDoCoConfigDefaults["toIgnore"] as! Array<String>
+    self.toAdd = toDoCoConfigDefaults["toAdd"] as! Array<String>
+  }
+
   public init(useGitignore: Bool?, toIgnore: [String]?, toAdd: [String]?) {
     if let ug = useGitignore {
       self.useGitignore = ug
