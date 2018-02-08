@@ -1,5 +1,5 @@
 extension Question {
-    func askText() -> String? {
+    func askText() -> Answer? {
 
         var questionText = text
 
@@ -13,12 +13,16 @@ extension Question {
 
         if let answer = readLine() {
             if answer.isEmpty {
-                return defaultAnswer as? String
+                if let def = defaultAnswer as? String {
+                    return Answer.stringAnswer(def)
+                } else {
+                    return nil
+                }
             } else {
-                return answer
+                return Answer.stringAnswer(answer)
             }
         } else {
-            return defaultAnswer as? String
+            return nil
         }
     }
 }

@@ -11,25 +11,25 @@ let main = Group {
 
     let folderName = URL(fileURLWithPath: path).lastPathComponent
 
-    let name = Question<String>(
+    let name = Question(
       text: "What's your name?",
       type: .text
     ).ask()
 
-    let project = Question<String>(
+    let project = Question(
       text: "What's the name of this project?",
       type: .text,
       defaultAnswer: folderName
     ).ask()
 
-    let useGitignore = Question<Bool>(
+    let useGitignore = Question(
       text: "Do you want to use the .gitignore?",
       type: .bool,
       defaultAnswer: false
     ).ask()
-    
-    let todoProject = ToDoCoProject(name: project, author: name)
-    let todoFiles = ToDoCoFiles(useGitignore: useGitignore)
+
+    let todoProject = ToDoCoProject(name: project!.text(), author: name!.text())
+    let todoFiles = ToDoCoFiles(useGitignore: useGitignore!.bool())
 
     let config: ToDoCoConfig = ToDoCoConfig(project: todoProject, files: todoFiles)
     do {

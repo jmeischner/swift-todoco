@@ -1,5 +1,5 @@
 extension Question {
-    func askBool() -> Bool {
+    func askBool() -> Answer? {
 
         var questionEnding = "(y/n)"
 
@@ -20,32 +20,32 @@ extension Question {
 
         if let answer = readLine() {
             if answer == "" {
-                return defaultA
+                return Answer.boolAnswer(defaultA)
             } else {
                 return test(answer: answer)
             }
         } else {
-            return false
+            return nil
         }
     }
 
-    private func reask() -> Bool {
+    private func reask() -> Answer? {
         // Todo: Internationalize
         print("Please enter a valid answer:")
 
         if let answer = readLine() {
             return test(answer: answer)
         } else {
-            return false
+            return nil
         }
     }
 
-    private func test(answer: String) -> Bool {
+    private func test(answer: String) -> Answer? {
         switch answer {
         case "y", "Y":
-            return true
+            return Answer.boolAnswer(true)
         case "n", "N":
-            return false
+            return Answer.boolAnswer(false)
         default:
             return reask()
         }
