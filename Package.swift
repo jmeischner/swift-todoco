@@ -32,7 +32,7 @@ let package = Package(
             dependencies: ["Quick", "Nimble", "ToDoCoConfig", "Yaml"]),
         .target(
             name: "CLQuestions",
-            dependencies: []),
+            dependencies: ["Rainbow"]),
         .testTarget(
             name: "CLQuestionsTests",
             dependencies: ["Quick", "Nimble", "CLQuestions"])

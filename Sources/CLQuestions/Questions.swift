@@ -5,7 +5,14 @@ public class Questions {
         self.questions = questions
     }
 
-    public func ask() -> [String: Answer?] {
-        
+    public func ask() throws -> [String: Answer] {
+        var result = [String: Answer]()
+
+        for (key, question) in questions {
+            let answer = try question.ask()
+            result[key] = answer
+        }
+
+        return result
     }
 }

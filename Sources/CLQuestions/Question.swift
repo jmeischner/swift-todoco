@@ -1,4 +1,4 @@
-import Foundation
+// Todo: Add argument for validation closure
 
 public class Question {
     let text: String
@@ -18,15 +18,15 @@ public class Question {
         self.defaultAnswer = defaultAnswer
     }
 
-    public func ask() -> Answer? {
+    public func ask() throws -> Answer {
 
         switch type {
         case .text:
-            return askText()
+            return try askText()
         case .bool:
-            return askBool()
+            return try askBool()
         default:
-            return askText()
+            return try askText()
         }
     }
 }

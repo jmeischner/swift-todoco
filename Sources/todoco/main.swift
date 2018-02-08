@@ -11,30 +11,23 @@ let main = Group {
 
     let folderName = URL(fileURLWithPath: path).lastPathComponent
 
-    let name = Question(
-      text: "What's your name?",
-      type: .text
-    ).ask()
+    var questions = [String: Answer]()
 
-    let project = Question(
-      text: "What's the name of this project?",
-      type: .text,
-      defaultAnswer: folderName
-    ).ask()
+    do {
+      questions = try Questions(questions: [
+        "name": Question(text: "What's your name?"),
+        "project": Question(text: "Whats the name of the project?", type: .text, defaultAnswer: folderName),
+        "useGitignore": Question(text: "Do you want to use the .gitignore?", type: .bool, defaultAnswer: false)
+    ]).ask() } catch QuestionError.notPossibleToReadLine {
+      print("Error: It was not possible to read the line.".red)
+    }
 
-    let useGitignore = Question(
-      text: "Do you want to use the .gitignore?",
-      type: .bool,
-      defaultAnswer: false
-    ).ask()
-
-    let todoProject = ToDoCoProject(name: project!.text(), author: name!.text())
-    let todoFiles = ToDoCoFiles(useGitignore: useGitignore!.bool())
-
+    let todoProject = ToDoCoProject(name: questions["project"]!.text(), author: questions["name"]!.text())
+    let todoFiles = ToDoCoFiles(useGitignore: questions["useGitignore"]!.bool())
     let config: ToDoCoConfig = ToDoCoConfig(project: todoProject, files: todoFiles)
     do {
       try ToDoCoConfigWriter.write(toPath: path, config: config)
-    } catch ToDoCoConfigError.ConfigFileAlreadyExist {
+    } catch ToDoCoConfigError.configFileAlreadyExist {
       print("Error: '\(path)' seems to be already a todoco project.".red)
     }
   }
@@ -47,7 +40,7 @@ let main = Group {
 
     do {
       config = try ToDoCoConfigReader.readConfigFile(atPath: path)
-    } catch ToDoCoConfigError.DirectoryIsNoToDoCoProject {
+    } catch ToDoCoConfigError.directoryIsNoToDoCoProject {
       print("Info: No \(ToDoCoNames.configFile.rawValue) found at '\(path)', thus use default configuration.".yellow)
     }
 

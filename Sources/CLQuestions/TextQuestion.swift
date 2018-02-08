@@ -1,12 +1,14 @@
-extension Question {
-    func askText() -> Answer? {
+import Rainbow
 
-        var questionText = text
+extension Question {
+    func askText() throws -> Answer {
+
+        var questionText = "\u{203A} ".cyan + text.bold
 
         let defAns = defaultAnswer as? String
 
         if let def = defAns {
-            questionText += " (\(def))"
+            questionText += " (\(def))".yellow
         }
 
         print(questionText)
@@ -16,13 +18,13 @@ extension Question {
                 if let def = defaultAnswer as? String {
                     return Answer.stringAnswer(def)
                 } else {
-                    return nil
+                    return Answer.stringAnswer(answer)
                 }
             } else {
                 return Answer.stringAnswer(answer)
             }
         } else {
-            return nil
+            throw QuestionError.notPossibleToReadLine
         }
     }
 }
