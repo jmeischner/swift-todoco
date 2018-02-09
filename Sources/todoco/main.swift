@@ -2,6 +2,7 @@ import ToDoCoConfig
 import CLQuestions
 import Commander
 import Foundation
+import Glob
 
 let main = Group {
   $0.command("init",
@@ -24,6 +25,14 @@ let main = Group {
     }
 
     print(config.toYaml())
+  }
+
+  $0.command("test") {
+    let files = glob(root: ".", paths: [".git", ".build", "/Tests/", "/**/Glob.swift", "!.todococonfig"])
+
+    for file in files {
+      // print(file)
+    }
   }
 }
 
