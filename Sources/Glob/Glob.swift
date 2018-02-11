@@ -21,28 +21,36 @@ werden
 */
 
 public func glob(root: String, paths: [String]) -> [String] {
+    
     let optEnumerator = FileManager.default.enumerator(atPath: root)
+    let pattern = prepare(pattern: paths)
 
-    let pattern = characterizeGlob(paths)
-    print(pattern)
-    var result = [String]()
-
-    if let enumerator = optEnumerator {
-        while let path = enumerator.nextObject() {
-            if let file = path as? String {
-                let match = glob(pattern, matches: file)
-
-                switch match {
-                case .directory:
-                    enumerator.skipDescendants()
-                case .file:
-                    break
-                case .none:
-                    result.append(file)
-                }
-            }
-        }
+    for pat in pattern {
+        print(pat)
     }
 
-    return result
+    return [String]()
+
+    // return glob(pattern: [NSRegularExpression], enummerator: FileManager.DirectoryEnumerator)
+
+    // var result = [String]()
+
+    // if let enumerator = optEnumerator {
+    //     while let path = enumerator.nextObject() {
+    //         if let file = path as? String {
+    //             let match = glob(pattern, matches: file)
+
+    //             switch match {
+    //             case .directory:
+    //                 enumerator.skipDescendants()
+    //             case .file:
+    //                 break
+    //             case .none:
+    //                 result.append(file)
+    //             }
+    //         }
+    //     }
+    // }
+
+    // return result
 }
