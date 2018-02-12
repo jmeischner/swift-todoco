@@ -28,10 +28,10 @@ let main = Group {
   }
 
   $0.command("test") {
-    let files = glob(root: ".", paths: [".git", ".build", "/Tests/", "/**/Glob.swift", "*.todoco*", "!.todococonfig"])
+    let files = glob(root: ".", paths: [".git", ".build", "/Tests/", "/**/Glob.swift"])
 
     for file in files {
-      // print(file)
+      print(file)
     }
   }
 }

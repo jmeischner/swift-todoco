@@ -1,12 +1,26 @@
 import Foundation
 
-let containsPattern = "Pattern\\/|\\/Pattern$|\\/Pattern\\/"
-let oneStarPatter = "(/|\\\\A)[^/]*(/|$)"
-let twoStarPatter = "(/|\\\\A).*(/|$)"
+let containsPattern = "Pattern/|/Pattern$|/Pattern/|Pattern$"
 
 // Matches also the symbols before and after the star(s)
 let checkForTwoStarPattern = try! NSRegularExpression(pattern: "([^\\*]|\\A)\\*{2}([^\\*]|$)")
+
+// We need one start between slashes pattern and one star as part on an name e.g. *.sublime-* vs test/*/bla.html
 let checkForOneStarPattern = try! NSRegularExpression(pattern: "([^\\*]|\\A)\\*{1}([^\\*]|$)")
+
+struct GlobCase {
+    let find: String
+    let replace: String
+}
+
+let cases = [
+    // One Star between Slashes
+    GlobCase(find: "([^\\*]|\\A)\\*{1}([^\\*]|$)", replace: "(/|\\\\A)[^/]*(/|$)"),
+    // Anywhere in Path
+    GlobCase(find: "\\*{1}(((?<![\\*/]\\*)(?![\\*]))|(?<![\\*]\\*)(?![\\*/]))", replace: "([^/]*)"),
+    // Two Stars
+    GlobCase(find: "([^\\*]|\\A)\\*{2}([^\\*]|$)", replace: "(/|\\\\A).*(/|$)")
+]
 
 /**
 Pattern for string without slash:
@@ -37,7 +51,13 @@ dass er bei einem negate pattern nur prüft
 ob bisherige pattern dies ignorieren würden
 */
 
-//Throw error when pattern has something like *** included
+func buildPattern(pattern: inout NSMutableString, find: String, template: String) {
+    let regex = try! NSRegularExpression(pattern: find)
+
+    regex.replaceMatches(in: pattern, range: NSMakeRange(0, pattern.length), withTemplate: template)
+}
+
+//ToDo: Throw error when pattern has something like *** included
 func transform(glob: String) -> NSRegularExpression {
     var result = NSMutableString(string: glob)
 
@@ -45,9 +65,10 @@ func transform(glob: String) -> NSRegularExpression {
         result = NSMutableString(string: containsPattern.replacingOccurrences(of: "Pattern", with: glob))
     }
 
-    checkForOneStarPattern.replaceMatches(in: result, range: NSMakeRange(0, result.length), withTemplate: oneStarPatter)
-    checkForTwoStarPattern.replaceMatches(in: result, range: NSMakeRange(0, result.length), withTemplate: twoStarPatter)
-    print(result)
+    for globcase in cases {
+        buildPattern(pattern: &result, find: globcase.find, template: globcase.replace)
+    }
+
     let regex = try! NSRegularExpression(pattern: "\\A\(result)")
 
     return regex
@@ -55,6 +76,10 @@ func transform(glob: String) -> NSRegularExpression {
 
 func escape(glob: String) -> String {
     var result = glob
+
+    if result.hasPrefix("\\") {
+        result = String(result.dropFirst())
+    }
 
     if result.hasPrefix("/") {
         result = String(result.dropFirst())
@@ -67,12 +92,13 @@ func escape(glob: String) -> String {
 
 func checkNegationPattern(negation: String, pattern: [NSRegularExpression]) -> [NSRegularExpression] {
 
+    // Todo: consider how/when the negation pattern can be transformed to regex
     var result = pattern
     let path = String(negation.dropFirst())
 
     for index in 0..<pattern.count {
-        if pattern[index].numberOfMatches(in: path, range: NSMakeRange(0, result.count)) > 0 {
-            let newPattern = "(?!\(path))\(pattern[index].pattern)"
+        if pattern[index].numberOfMatches(in: path, range: NSMakeRange(0, path.count)) > 0 {
+            let newPattern = "(?!\(path))(\(pattern[index].pattern))"
             result[index] = try! NSRegularExpression(pattern: newPattern)
         }
     }

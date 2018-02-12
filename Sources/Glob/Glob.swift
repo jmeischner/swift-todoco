@@ -1,4 +1,5 @@
 import Foundation
+import Regex
 
 /*
 # Todo:
@@ -21,36 +22,31 @@ werden
 */
 
 public func glob(root: String, paths: [String]) -> [String] {
-    
+
     let optEnumerator = FileManager.default.enumerator(atPath: root)
     let pattern = prepare(pattern: paths)
 
-    for pat in pattern {
-        print(pat)
+    return glob(pattern: pattern, enumerator: optEnumerator)
+}
+
+func glob(pattern: [NSRegularExpression], enumerator: FileManager.DirectoryEnumerator?) -> [String] {
+    var result = [String]()
+
+    if let enumer = enumerator {
+        while let path = enumer.nextObject() {
+            if let file = path as? String {
+                var matches = false
+                for index in 0..<pattern.count {
+                    if pattern[index].numberOfMatches(in: file, range: NSMakeRange(0, file.count)) > 0 {
+                        matches = true
+                    }
+                }
+
+                if !matches {
+                    result.append(file)
+                }
+            }
+        }
     }
-
-    return [String]()
-
-    // return glob(pattern: [NSRegularExpression], enummerator: FileManager.DirectoryEnumerator)
-
-    // var result = [String]()
-
-    // if let enumerator = optEnumerator {
-    //     while let path = enumerator.nextObject() {
-    //         if let file = path as? String {
-    //             let match = glob(pattern, matches: file)
-
-    //             switch match {
-    //             case .directory:
-    //                 enumerator.skipDescendants()
-    //             case .file:
-    //                 break
-    //             case .none:
-    //                 result.append(file)
-    //             }
-    //         }
-    //     }
-    // }
-
-    // return result
+    return result
 }

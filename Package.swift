@@ -16,7 +16,8 @@ let package = Package(
         .package(url: "https://github.com/onevcat/Rainbow", from: "3.0.0"),
         .package(url: "https://github.com/kylef/Commander", from: "0.8.0"),
         .package(url: "https://github.com/behrang/YamlSwift.git", from: "3.4.0"),
-        .package(url: "https://github.com/jpsim/Yams.git", from: "0.5.0")
+        .package(url: "https://github.com/jpsim/Yams.git", from: "0.5.0"),
+        .package(url: "https://github.com/sharplet/Regex.git", from: "1.1.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. 
@@ -40,7 +41,7 @@ let package = Package(
             dependencies: ["Quick", "Nimble", "CLQuestions"]),
         .target(
             name: "Glob",
-            dependencies: []),
+            dependencies: ["Regex"]),
         .testTarget(
             name: "GlobTests",
             dependencies: ["Quick", "Nimble", "Glob"])

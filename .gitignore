@@ -2,6 +2,3 @@
 /.build
 /Packages
 /*.xcodeproj
-
-!Tests/GlobTests
-Tests/*
