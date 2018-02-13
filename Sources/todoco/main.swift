@@ -29,10 +29,10 @@ let main = Group {
 
   $0.command("test") {
     let files = glob(root: ".", paths: [
-      ".git", 
-      ".build", 
-      "/Tests/", 
-      "Sources/CLQuestions/*",
+      ".git",
+      ".build",
+      "/Tests/",
+      "Sources/CLQuestions",
       "!Sources/CLQuestions/*Error.*"])
 
     for file in files {
