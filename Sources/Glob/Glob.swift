@@ -43,7 +43,13 @@ func glob(pattern: [NSRegularExpression], enumerator: FileManager.DirectoryEnume
                 }
 
                 if !matches {
-                    result.append(file)
+                    let fileUrl = URL(fileURLWithPath: file)
+
+                    if #available(OSX 10.11, *) {
+                        if !fileUrl.hasDirectoryPath {
+                            result.append(file)    
+                        }
+                    }
                 }
             }
         }

@@ -15,11 +15,11 @@ struct GlobCase {
 
 let cases = [
     // One Star between Slashes
-    GlobCase(find: "([^\\*]|\\A)\\*{1}([^\\*]|$)", replace: "(/|\\\\A)[^/]*(/|$)"),
+    GlobCase(find: "\\*(?<!\\*{2})(?!\\*)((?<=/\\*)(?=/)|(?<=\\A\\*)(?=$)|(?<=\\A\\*)(?=/))", replace: "(/|\\\\A)[^/]*(/|$)"),
     // Anywhere in Path
-    GlobCase(find: "\\*{1}(((?<![\\*/]\\*)(?![\\*]))|(?<![\\*]\\*)(?![\\*/]))", replace: "([^/]*)"),
+    GlobCase(find: "\\*(((?<![\\*/]\\*)(?![\\*]))|(?<![\\*]\\*)(?![\\*/]))(?<!\\(/\\|\\\\A\\)\\[\\^/\\]\\*)", replace: "([^/]*)"),
     // Two Stars
-    GlobCase(find: "([^\\*]|\\A)\\*{2}([^\\*]|$)", replace: "(/|\\\\A).*(/|$)")
+    GlobCase(find: "\\*{2}(?<!\\*{3})(?!\\*)((?<=/\\*{2})(?=/)|(?<=\\A\\*{2})(?=$)|(?<=/\\*{2})(?=$)|(?<=\\A\\*{2})(?=/))", replace: "(/|\\\\A).*(/|$)")
 ]
 
 /**
@@ -97,8 +97,13 @@ func checkNegationPattern(negation: String, pattern: [NSRegularExpression]) -> [
     let path = String(negation.dropFirst())
 
     for index in 0..<pattern.count {
+        print(pattern[index])
+        print(path)
         if pattern[index].numberOfMatches(in: path, range: NSMakeRange(0, path.count)) > 0 {
-            let newPattern = "(?!\(path))(\(pattern[index].pattern))"
+            let negPattern = escape(glob: path)
+            let transformed = transform(glob: negPattern)
+            let newPattern = "(?!(\(transformed.pattern)))(\(pattern[index].pattern))"
+            print(newPattern)
             result[index] = try! NSRegularExpression(pattern: newPattern)
         }
     }

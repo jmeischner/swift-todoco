@@ -28,7 +28,12 @@ let main = Group {
   }
 
   $0.command("test") {
-    let files = glob(root: ".", paths: [".git", ".build", "/Tests/", "/**/Glob.swift"])
+    let files = glob(root: ".", paths: [
+      ".git", 
+      ".build", 
+      "/Tests/", 
+      "Sources/CLQuestions/*",
+      "!Sources/CLQuestions/*Error.*"])
 
     for file in files {
       print(file)
