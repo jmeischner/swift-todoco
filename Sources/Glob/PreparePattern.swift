@@ -1,57 +1,35 @@
 import Foundation
 
-let containsPattern = "Pattern/|/Pattern$|/Pattern/|Pattern$"
-
-// Matches also the symbols before and after the star(s)
-let checkForTwoStarPattern = try! NSRegularExpression(pattern: "([^\\*]|\\A)\\*{2}([^\\*]|$)")
-
-// We need one start between slashes pattern and one star as part on an name e.g. *.sublime-* vs test/*/bla.html
-let checkForOneStarPattern = try! NSRegularExpression(pattern: "([^\\*]|\\A)\\*{1}([^\\*]|$)")
-
 struct GlobCase {
     let find: String
     let replace: String
 }
 
+let containsPattern = "Pattern/|/Pattern$|/Pattern/|Pattern$"
+
 let cases = [
-    // One Star between Slashes
-    GlobCase(find: "\\*(?<!\\*{2})(?!\\*)((?<=/\\*)(?=/)|(?<=\\A\\*)(?=$)|(?<=\\A\\*)(?=/))", replace: "(/|\\\\A)[^/]*(/|$)"),
-    // Anywhere in Path
-    GlobCase(find: "\\*(((?<![\\*/]\\*)(?![\\*]))|(?<![\\*]\\*)(?![\\*/]))(?<!\\(/\\|\\\\A\\)\\[\\^/\\]\\*)", replace: "([^/]*)"),
+    // One star between slashes
+    GlobCase(
+        find: "\\*(?<!\\*{2})(?!\\*)((?<=/\\*)(?=/)|(?<=\\A\\*)(?=$)|(?<=\\A\\*)(?=/))",
+        replace: "(/|\\\\A)[^/]*(/|$)"
+    ),
+    // One Star Anywhere in Path except between two slashes
+    GlobCase(
+        find: "\\*(((?<![\\*/]\\*)(?![\\*]))|(?<![\\*]\\*)(?![\\*/]))(?<!\\(/\\|\\\\A\\)\\[\\^/\\]\\*)",
+        replace: "([^/]*)"
+    ),
     // Two Stars
-    GlobCase(find: "\\*{2}(?<!\\*{3})(?!\\*)((?<=/\\*{2})(?=/)|(?<=\\A\\*{2})(?=$)|(?<=/\\*{2})(?=$)|(?<=\\A\\*{2})(?=/))", replace: "(/|\\\\A).*(/|$)")
+    GlobCase(
+        find: "\\*{2}(?<!\\*{3})(?!\\*)((?<=/\\*{2})(?=/)|(?<=\\A\\*{2})(?=$)|(?<=/\\*{2})(?=$)|(?<=\\A\\*{2})(?=/))",
+        replace: "(/|\\\\A).*(/|$)"
+    )
 ]
 
 /**
-Pattern for string without slash:
-"\APatter\/|\/Patter$|\/Patter\/"
-
-Pattern for string with one *
-Replace * with [^\/]*
-
-Pattern for string with **
-Replace ** with .*
-
-In general:
-Escape Slashes with \/ and
-dots with \.
-If Match is dir --> skipDescendants()
-
-Pattern for negate strings
-Collect dismissed files and try
-if negate pattern matches this (files only!)
-
-------
-Wenn eins der Exclude Patterns ein include Pattern
-matched, dann schreib das include Pattern mit
-(?!....) davor! 
-Bzw:
-.gitignore scheint so zu funtkionieren, 
-dass er bei einem negate pattern nur prüft
-ob bisherige pattern dies ignorieren würden
+Replaces **stars** inside an ignore string with
+the corresponding regex pattern.
 */
-
-func buildPattern(pattern: inout NSMutableString, find: String, template: String) {
+func buildGlobPattern(pattern: inout NSMutableString, find: String, template: String) {
     let regex = try! NSRegularExpression(pattern: find)
 
     regex.replaceMatches(in: pattern, range: NSMakeRange(0, pattern.length), withTemplate: template)
@@ -66,7 +44,7 @@ func transform(glob: String) -> NSRegularExpression {
     }
 
     for globcase in cases {
-        buildPattern(pattern: &result, find: globcase.find, template: globcase.replace)
+        buildGlobPattern(pattern: &result, find: globcase.find, template: globcase.replace)
     }
 
     let regex = try! NSRegularExpression(pattern: "\\A\(result)")
