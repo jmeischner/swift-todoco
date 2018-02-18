@@ -31,7 +31,9 @@ public final class ToDoCoConfigReader {
     }
 
     // Todo: Test if the yaml itself is broken
-    let config = try! Yaml.load(fileContent)
+    guard let config = try? Yaml.load(fileContent) else {
+      throw ToDoCoConfigError.configFileIsNotValid
+    }
 
     return serialize(yaml: config)
   }

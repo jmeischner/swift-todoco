@@ -4,10 +4,10 @@ import Regex
 /**
 
 */
-public func glob(root: String, paths: [String]) -> [String] {
+public func glob(root: String, paths: [String]) throws -> [String] {
 
     let optEnumerator = FileManager.default.enumerator(atPath: root)
-    let pattern = prepare(pattern: paths)
+    let pattern = try prepare(pattern: paths)
 
     return glob(pattern: pattern, enumerator: optEnumerator)
 }
@@ -30,8 +30,10 @@ func glob(pattern: [NSRegularExpression], enumerator: FileManager.DirectoryEnume
                 if !matches {
                     if #available(OSX 10.11, *) {
                         if !fileUrl.hasDirectoryPath {
-                            result.append(file)    
+                            result.append(file)
                         }
+                    } else {
+                        result.append(file)
                     }
                 } else {
                     if #available(OSX 10.11, *) {

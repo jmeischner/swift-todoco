@@ -5,6 +5,10 @@ struct GlobCase {
     let replace: String
 }
 
+public enum IgnoreError: Error {
+    case noValidPattern
+}
+
 let containsPattern = "Pattern/|/Pattern$|/Pattern/|Pattern$"
 
 let cases = [
@@ -29,14 +33,16 @@ let cases = [
 Replaces **stars** inside an ignore string with
 the corresponding regex pattern.
 */
-func buildGlobPattern(pattern: inout NSMutableString, find: String, template: String) {
-    let regex = try! NSRegularExpression(pattern: find)
+func buildGlobPattern(pattern: inout NSMutableString, find: String, template: String) throws {
+    guard let regex = try? NSRegularExpression(pattern: find) else {
+        throw IgnoreError.noValidPattern
+    }
 
     regex.replaceMatches(in: pattern, range: NSMakeRange(0, pattern.length), withTemplate: template)
 }
 
 //ToDo: Throw error when pattern has something like *** included
-func transform(glob: String) -> NSRegularExpression {
+func transform(glob: String) throws -> NSRegularExpression {
     var result = NSMutableString(string: glob)
 
     if !result.contains("/") {
@@ -44,10 +50,12 @@ func transform(glob: String) -> NSRegularExpression {
     }
 
     for globcase in cases {
-        buildGlobPattern(pattern: &result, find: globcase.find, template: globcase.replace)
+        try buildGlobPattern(pattern: &result, find: globcase.find, template: globcase.replace)
     }
 
-    let regex = try! NSRegularExpression(pattern: "\\A\(result)")
+    guard let regex = try? NSRegularExpression(pattern: "\\A\(result)") else {
+        throw IgnoreError.noValidPattern
+    }
 
     return regex
 }
@@ -68,38 +76,38 @@ func escape(glob: String) -> String {
     return result
 }
 
-func checkNegationPattern(negation: String, pattern: [NSRegularExpression]) -> [NSRegularExpression] {
+func checkNegationPattern(negation: String, pattern: [NSRegularExpression]) throws -> [NSRegularExpression] {
 
-    // Todo: consider how/when the negation pattern can be transformed to regex
     var result = pattern
     let path = String(negation.dropFirst())
 
     for index in 0..<pattern.count {
-        print(pattern[index])
-        print(path)
+
         if pattern[index].numberOfMatches(in: path, range: NSMakeRange(0, path.count)) > 0 {
             let negPattern = escape(glob: path)
-            let transformed = transform(glob: negPattern)
+            let transformed = try transform(glob: negPattern)
             let newPattern = "(?!(\(transformed.pattern)))(\(pattern[index].pattern))"
-            print(newPattern)
-            result[index] = try! NSRegularExpression(pattern: newPattern)
+            guard let newRegex = try? NSRegularExpression(pattern: newPattern) else {
+                throw IgnoreError.noValidPattern
+            }
+            result[index] = newRegex
         }
     }
 
     return result
 }
 
-func prepare(pattern: [String]) -> [NSRegularExpression] {
+func prepare(pattern: [String]) throws -> [NSRegularExpression] {
 
     var result = [NSRegularExpression]()
 
     for pat in pattern {
 
         if pat.hasPrefix("!") {
-            result = checkNegationPattern(negation: pat, pattern: result)
+            result = try checkNegationPattern(negation: pat, pattern: result)
         } else {
             let escaped = escape(glob: pat)
-            let transformed = transform(glob: escaped)
+            let transformed =  try transform(glob: escaped)
             result.append(transformed)
         }
     }

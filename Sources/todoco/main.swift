@@ -28,15 +28,20 @@ let main = Group {
   }
 
   $0.command("test") {
-    let files = glob(root: ".", paths: [
-      ".git",
-      ".build",
-      "/Tests/",
-      "Sources/CLQuestions",
-      "!Sources/CLQuestions/*Error.*"])
+    do {
+      let files = try glob(root: ".", paths: [
+          ".git",
+          ".build",
+          "/Tests/",
+          "Sources/CLQuestions",
+          "!Sources/CLQuestions/*Error.*"]
+        )
 
-    for file in files {
-      print(file)
+      for file in files {
+        print(file)
+      }
+    } catch IgnoreError.noValidPattern {
+      print("It was not possible to parse ignore file.".red)
     }
   }
 }
