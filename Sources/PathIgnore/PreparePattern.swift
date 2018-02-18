@@ -5,10 +5,6 @@ struct GlobCase {
     let replace: String
 }
 
-public enum IgnoreError: Error {
-    case noValidPattern
-}
-
 let containsPattern = "Pattern/|/Pattern$|/Pattern/|Pattern$"
 
 let cases = [

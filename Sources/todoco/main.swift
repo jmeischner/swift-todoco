@@ -2,7 +2,7 @@ import ToDoCoConfig
 import CLQuestions
 import Commander
 import Foundation
-import Glob
+import PathIgnore
 
 let main = Group {
   $0.command("init",
@@ -29,13 +29,7 @@ let main = Group {
 
   $0.command("test") {
     do {
-      let files = try glob(root: ".", paths: [
-          ".git",
-          ".build",
-          "/Tests/",
-          "Sources/CLQuestions",
-          "!Sources/CLQuestions/*Error.*"]
-        )
+      let files = try pathsFrom(ignoreFile: ".gitignore")
 
       for file in files {
         print(file)

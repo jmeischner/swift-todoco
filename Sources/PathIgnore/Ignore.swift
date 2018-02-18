@@ -2,10 +2,41 @@ import Foundation
 import Regex
 
 /**
+Function to get all paths not ignored by an
+ignore file (e.g. .gitignore) at the specified
+path.
 
+@param ignoreFile Path to the ignore file
+@returns Paths to all not ignored files
 */
-public func glob(root: String, paths: [String]) throws -> [String] {
+public func pathsFrom(ignoreFile: String) throws -> [String] {
 
+    guard let ignoreContent = try? String(contentsOfFile: ignoreFile) else {
+        throw IgnoreError.noIgnoreFileFound
+    }
+
+    var lines = ignoreContent.split(separator: "\n").map {String($0)}
+
+    // Todo: Consider changing this behavior to a switchable function argument
+    lines.append(".git")
+
+    guard let root = URL(fileURLWithPath: ignoreFile).baseURL?.relativePath else {
+        throw IgnoreError.noBaseURLExtractable
+    }
+
+    return try pathsFrom(root: root, ignorePattern: lines)
+}
+
+/**
+Returns the paths to all files not ignored
+by the specified patterns, starting from 
+given path to root
+
+@param root Root path from which the pattern starts
+@param ignorePattern
+@returns Paths to all not ignored files
+*/
+public func pathsFrom(root: String, ignorePattern paths: [String]) throws -> [String] {
     let optEnumerator = FileManager.default.enumerator(atPath: root)
     let pattern = try prepare(pattern: paths)
 

@@ -26,7 +26,7 @@ let package = Package(
         // and on products in packages which this package depends on.
         .target(
             name: "ToDoCo",
-            dependencies: ["ToDoCoConfig", "Commander", "CLQuestions", "Glob"]),
+            dependencies: ["ToDoCoConfig", "Commander", "CLQuestions", "PathIgnore"]),
         .target(
             name: "ToDoCoConfig",
             dependencies: ["Yaml", "Rainbow", "Yams"]),
@@ -40,10 +40,10 @@ let package = Package(
             name: "CLQuestionsTests",
             dependencies: ["Quick", "Nimble", "CLQuestions"]),
         .target(
-            name: "Glob",
+            name: "PathIgnore",
             dependencies: ["Regex"]),
         .testTarget(
-            name: "GlobTests",
-            dependencies: ["Quick", "Nimble", "Glob"])
+            name: "PathIgnoreTests",
+            dependencies: ["Quick", "Nimble", "PathIgnore"])
     ]
 )
