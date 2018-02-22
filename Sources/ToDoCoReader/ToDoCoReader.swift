@@ -19,7 +19,11 @@ public class ToDoCoReader {
         for file in files {
             do {
                 let content = try String(contentsOfFile: file)
-                let lines = content.split(separator: "\n").map {String($0)}    
+                let lines = content.split(separator: "\n")
+
+                for (index, line) in lines.enumerate() {
+                    
+                }   
             }
 
 
