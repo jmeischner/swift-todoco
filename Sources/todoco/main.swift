@@ -1,8 +1,6 @@
-import ToDoCoConfig
-import CLQuestions
 import Commander
+import Regex
 import Foundation
-import PathIgnore
 
 let main = Group {
   $0.command("init",
@@ -12,30 +10,25 @@ let main = Group {
     initToDoCoProject(atPath: path)
   }
 
-  $0.command("show",
-    Option("path", default: ".", description: "Path to the new todoco project."),
-    description: "Initialize a new todoco project."
+  $0.command("list",
+    Option("path", default: ".", description: "Path to the new todoco project.")
   ) { path in
-    var config: ToDoCoConfig = ToDoCoConfig()
-
-    do {
-      config = try ToDoCoConfigReader.readConfigFile(atPath: path)
-    } catch ToDoCoConfigError.directoryIsNoToDoCoProject {
-      print("Info: No \(ToDoCoNames.configFile.rawValue) found at '\(path)', thus use default configuration.".yellow)
-    }
-
-    print(config.toYaml())
+    listToDos(atPath: path)
   }
 
   $0.command("test") {
-    do {
-      let files = try pathsFrom(ignoreFile: ".gitignore")
+    let test = try! NSRegularExpression(pattern: ".*(?<=Todo:?\\s)(?<todo>.*)$", options: [.caseInsensitive])
+    let testString = "// Todo: Hallo Welt"
 
-      for file in files {
-        print(file)
+    if #available(OSX 10.13, *) {
+      let matches = test.matches(in: testString, range: NSMakeRange(0, testString.count))
+      let todo = matches[0].range(withName: "todo")
+      let swiftRangeTodo = Range(todo, in: testString)
+
+      // Todo Line number, idee: Vorher separate by \n und dann durch gehen und Count machen bis match kommt
+      if let range = swiftRangeTodo {
+        print(testString[range])
       }
-    } catch IgnoreError.noValidPattern {
-      print("It was not possible to parse ignore file.".red)
     }
   }
 }
