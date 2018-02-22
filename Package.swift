@@ -60,7 +60,7 @@ let package = Package(
             dependencies: ["Quick", "Nimble", "ToDo"]),
         .target(
             name: "ToDoCoReader",
-            dependencies: ["ToDo"]),
+            dependencies: ["ToDo", "Ignore"]),
         .testTarget(
             name: "ToDoCoReaderTests",
             dependencies: ["Quick", "Nimble", "ToDoCoReader"])

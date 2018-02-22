@@ -17,7 +17,13 @@ public class ToDoCoReader {
         var result = [ToDo]()
         // todo: blabla
         for file in files {
-            let content = try! String(contentsOfFile: file)
+            do {
+                let content = try String(contentsOfFile: file)
+                let lines = content.split(separator: "\n").map {String($0)}    
+            }
+
+
+            
             print(file)
             print(ToDo.pattern.allMatches(in: content))
         }
@@ -25,3 +31,15 @@ public class ToDoCoReader {
         return result
     }
 }
+
+
+if #available(OSX 10.13, *) {
+      let matches = test.matches(in: testString, range: NSMakeRange(0, testString.count))
+      let todo = matches[0].range(withName: "todo")
+      let swiftRangeTodo = Range(todo, in: testString)
+
+      // Todo Line number, idee: Vorher separate by \n und dann durch gehen und Count machen bis match kommt
+      if let range = swiftRangeTodo {
+        print(testString[range])
+      }
+    }

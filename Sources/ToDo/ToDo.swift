@@ -1,7 +1,7 @@
 import Regex
 
 public class ToDo {
-    public static let pattern = Regex("(?=todo:\\s?).*$", options: [.ignoreCase])
+    public static let pattern = try! NSRegularExpression(pattern: ".*(?<=todo:?\\s)(?<todo>.*)$", options: [.caseInsensitive])
     let file: String
     let line: UInt
     let text: String

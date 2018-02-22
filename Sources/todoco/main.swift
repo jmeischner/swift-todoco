@@ -17,7 +17,7 @@ let main = Group {
   }
 
   $0.command("test") {
-    let test = try! NSRegularExpression(pattern: ".*(?<=Todo:?\\s)(?<todo>.*)$", options: [.caseInsensitive])
+    let test = try! NSRegularExpression(pattern: ".*(?<=todo:?\\s)(?<todo>.*)$", options: [.caseInsensitive])
     let testString = "// Todo: Hallo Welt"
 
     if #available(OSX 10.13, *) {
