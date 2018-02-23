@@ -1,6 +1,19 @@
 import Foundation
 import Ignore
 
+/**
+Class for managing the ignore behavior of a
+todoco project
+
+    ```
+    // Write the template
+    ToDoCoIgnore.writeTemlate(atRoot: ".")
+
+    // Get all files which are not ignored
+    let ignore = ToDoCoIgnore(atRoot: ".")
+    let files = try ignore.files()
+    ```
+*/
 public class ToDoCoIgnore {
 
     static let template = """
@@ -11,10 +24,24 @@ public class ToDoCoIgnore {
 
     let root: String
 
+    /**
+        Initializer of the ToDoCoIgnore class
+
+        - Parameter atRoot: Path to the directory which
+            contains the .todocoignore file (*Project Root*)
+    */
     public init(atRoot: String) {
         root = atRoot
     }
 
+    /**
+        Writes default .todocoignore
+
+        Class function to write the default .todocoignore
+        to given root path
+
+        - Parameter atRoot: Path to the root of the new todoco Project
+    */
     public class func writeTemplate(atRoot: String) throws {
 
         var pathUrl = URL(fileURLWithPath: atRoot)
@@ -27,6 +54,21 @@ public class ToDoCoIgnore {
         }
     }
 
+    /**
+        Get Files from .todocoignore
+
+        Function returns all files which are not ignored
+        by the .todocoignore file or file this file uses
+
+        - Returns: Array of file paths
+        
+        - Throws: `ToDoCoConfigError.ignoreFileCouldNotBeRead` if the ignore file
+            can not be opened
+        - Throws: `ToDoCoConfigError.invalidToDoCoIgnore` if the ignore file
+            has an invalid format
+        - Throws: `IgnoreError.noValidPattern` if the transformed pattern of an
+            ignore file is not a valid NSRegularExpression pattern
+    */
     public func files() throws -> [String] {
         let patterns = try parse()
         return try pathsFrom(root: root, ignorePattern: patterns)

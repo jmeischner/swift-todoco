@@ -2,6 +2,8 @@ import Commander
 import Regex
 import Foundation
 
+// Todo: Increase Performance
+
 let main = Group {
   $0.command("init",
     Option("path", default: ".", description: "Path to the new todoco project."),

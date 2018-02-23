@@ -6,8 +6,8 @@ Function to get all paths not ignored by an
 ignore file (e.g. .gitignore) at the specified
 path.
 
-@param ignoreFile Path to the ignore file
-@returns Paths to all not ignored files
+- Parameter ignoreFile: Path to the ignore file
+- Returns: Paths to all not ignored files
 */
 public func pathsFrom(ignoreFile: String) throws -> [String] {
 
@@ -15,10 +15,7 @@ public func pathsFrom(ignoreFile: String) throws -> [String] {
         throw IgnoreError.noIgnoreFileFound
     }
 
-    var lines = ignoreContent.split(separator: "\n").map {String($0)}
-
-    // Todo: Consider changing this behavior to a switchable function argument
-    lines.append(".git")
+    let lines = ignoreContent.split(separator: "\n").map {String($0)}
 
     guard let root = URL(fileURLWithPath: ignoreFile).baseURL?.relativePath else {
         throw IgnoreError.noBaseURLExtractable
@@ -32,9 +29,10 @@ Returns the paths to all files not ignored
 by the specified patterns, starting from 
 given path to root
 
-@param root Root path from which the pattern starts
-@param ignorePattern
-@returns Paths to all not ignored files
+- Parameter root: Root path from which the pattern starts
+- Parameter ignorePattern: Array with glob pattern from ignore files
+
+- Returns: Paths to all not ignored files
 */
 public func pathsFrom(root: String, ignorePattern paths: [String]) throws -> [String] {
     let optEnumerator = FileManager.default.enumerator(atPath: root)
