@@ -2,12 +2,27 @@ import Foundation
 import Ignore
 import ToDoCoConfig
 import ToDoCoReader
+import Rainbow
 
 func listToDos(atPath: String) {
     do {
         let config = try getToDoCoConfig(atPath: atPath)
         let reader = ToDoCoReader(config: config)
-        reader.read()
+        let todos = try reader.read()
+        
+        let todosByFiles = Dictionary(grouping: todos, by: { $0.file })
+
+        for (file, todos) in todosByFiles {
+            print("In file \(file):".cyan)
+            for todo in todos {
+                // Todo: solve distance with padding between line: and text
+                print("  \(todo.line):".blue + " \(todo.text)")
+            }
+            print()
+        }
+
+        print("Found \(todos.count) Todos in \(todosByFiles.count) Files".green)
+
     } catch {
         print("An Error Occured: \(error)".red)
     }

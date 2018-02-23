@@ -10,40 +10,32 @@ public class ToDoCoReader {
         self.config = config
     }
 
-    public func read() -> [ToDo] {
+    public func read() throws -> [ToDo] {
 
-        let files = try! pathsFrom(ignoreFile: ".gitignore")
+        // todo: Work with .todocoignore + .gitignore or patterns in .todococonfig + .gitignore
+        let files = try pathsFrom(ignoreFile: ".gitignore")
 
         var result = [ToDo]()
-        // todo: blabla
+        
         for file in files {
-            do {
-                let content = try String(contentsOfFile: file)
-                let lines = content.split(separator: "\n")
+            let content = try String(contentsOfFile: file)
+            let lines = content.split(separator: "\n", omittingEmptySubsequences: false).map{ String($0) }
 
-                for (index, line) in lines.enumerate() {
-                    
-                }   
+            for (index, line) in lines.enumerated() {
+                let matches = ToDo.pattern.matches(in: line, range: NSMakeRange(0, line.count))
+                if matches.count > 0 {
+                    if #available(OSX 10.13, *) {
+                        let todoRange = Range(matches[0].range(withName: "todo"), in: line)
+                        if let range = todoRange {
+                            let text = String(line[range])
+                            let linenumber = UInt(index + 1)
+                            let todo = ToDo(text: text, line: linenumber, file: file)
+                            result.append(todo)
+                        }
+                    }
+                }
             }
-
-
-            
-            print(file)
-            print(ToDo.pattern.allMatches(in: content))
         }
-
         return result
     }
 }
-
-
-if #available(OSX 10.13, *) {
-      let matches = test.matches(in: testString, range: NSMakeRange(0, testString.count))
-      let todo = matches[0].range(withName: "todo")
-      let swiftRangeTodo = Range(todo, in: testString)
-
-      // Todo Line number, idee: Vorher separate by \n und dann durch gehen und Count machen bis match kommt
-      if let range = swiftRangeTodo {
-        print(testString[range])
-      }
-    }
