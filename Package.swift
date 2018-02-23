@@ -17,7 +17,7 @@ let package = Package(
         .package(url: "https://github.com/kylef/Commander", from: "0.8.0"),
         .package(url: "https://github.com/behrang/YamlSwift.git", from: "3.4.0"),
         .package(url: "https://github.com/jpsim/Yams.git", from: "0.5.0"),
-        .package(url: "https://github.com/sharplet/Regex.git", from: "1.1.0")
+        .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", from: "4.0.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. 
@@ -31,12 +31,11 @@ let package = Package(
                 "Commander",
                 "CLQuestions",
                 "Ignore",
-                "ToDoCoReader",
-                "Regex"
+                "ToDoCoReader"
             ]),
         .target(
             name: "ToDoCoConfig",
-            dependencies: ["Yaml", "Rainbow", "Yams"]),
+            dependencies: ["Yaml", "Rainbow", "Yams", "Ignore"]),
         .testTarget(
             name: "ToDoCoConfigTests",
             dependencies: ["Quick", "Nimble", "ToDoCoConfig", "Yaml"]),
@@ -48,13 +47,13 @@ let package = Package(
             dependencies: ["Quick", "Nimble", "CLQuestions"]),
         .target(
             name: "Ignore",
-            dependencies: ["Regex"]),
+            dependencies: []),
         .testTarget(
             name: "IgnoreTests",
             dependencies: ["Quick", "Nimble", "Ignore"]),
         .target(
             name: "ToDo",
-            dependencies: ["Regex"]),
+            dependencies: []),
         .testTarget(
             name: "ToDoTests",
             dependencies: ["Quick", "Nimble", "ToDo"]),

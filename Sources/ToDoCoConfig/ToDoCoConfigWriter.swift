@@ -9,7 +9,7 @@ import Foundation
 public class ToDoCoConfigWriter {
 
   public class func write(toPath path: String, config: ToDoCoConfig) throws {
-    let configPathString = "\(path)/\(ToDoCoNames.configFile.rawValue)"
+    let configPathString = "\(path)/\(ToDoCoNames.configFile)"
     let configPathUrl = URL(fileURLWithPath: configPathString)
 
     if FileManager.default.fileExists(atPath: configPathString) {

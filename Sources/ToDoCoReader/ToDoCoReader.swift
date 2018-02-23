@@ -4,24 +4,23 @@ import ToDo
 import Ignore
 
 public class ToDoCoReader {
-    let config: ToDoCoConfig
+    let ignore: ToDoCoIgnore
 
-    public init(config: ToDoCoConfig) {
-        self.config = config
+    public init(ignore: ToDoCoIgnore) {
+        self.ignore = ignore
     }
 
     public func read() throws -> [ToDo] {
 
-        // todo: Work with .todocoignore + .gitignore or patterns in .todococonfig + .gitignore
-        let files = try pathsFrom(ignoreFile: ".gitignore")
-
         var result = [ToDo]()
-        
+
+        let files = try ignore.files()
+
         for file in files {
             // todo: don't try to read binaries, implement better handling!
             let tryContent = try? String(contentsOfFile: file)
             if let content = tryContent {
-                let lines = content.split(separator: "\n", omittingEmptySubsequences: false).map{ String($0) }
+                let lines = content.split(separator: "\n", omittingEmptySubsequences: false).map { String($0) }
 
                 for (index, line) in lines.enumerated() {
                     let matches = ToDo.pattern.matches(in: line, range: NSMakeRange(0, line.count))

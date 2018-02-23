@@ -6,8 +6,8 @@ import Rainbow
 
 func listToDos(atPath: String) {
     do {
-        let config = try getToDoCoConfig(atPath: atPath)
-        let reader = ToDoCoReader(config: config)
+        let ignore = ToDoCoIgnore(atRoot: atPath)
+        let reader = ToDoCoReader(ignore: ignore)
         let todos = try reader.read()
 
         let todosByFiles = Dictionary(grouping: todos, by: { $0.file })
@@ -23,6 +23,8 @@ func listToDos(atPath: String) {
 
         print("Found \(todos.count) Todos in \(todosByFiles.count) Files".green)
 
+    } catch ToDoCoConfigError.ignoreFileCouldNotBeRead {
+        print("Error: It was not possible to read \(ToDoCoNames.ignoreFile).".red)
     } catch {
         print("An Error Occured: \(error)".red)
     }
@@ -34,7 +36,7 @@ private func getToDoCoConfig(atPath: String) throws -> ToDoCoConfig {
     do {
       config = try ToDoCoConfigReader.readConfigFile(atPath: atPath)
     } catch ToDoCoConfigError.directoryIsNoToDoCoProject {
-      print("Info: No \(ToDoCoNames.configFile.rawValue) found at '\(atPath)', thus use default configuration.".yellow)
+      print("Info: No \(ToDoCoNames.configFile) found at '\(atPath)', thus use default configuration.".yellow)
       print()
     }
 

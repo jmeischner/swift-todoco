@@ -20,7 +20,7 @@ public final class ToDoCoConfigReader {
     - Returns: ToDoCoConfig instance
   */
   public class func readConfigFile(atPath path: String = ".") throws -> ToDoCoConfig {
-    let filepath = path + "/" + ToDoCoNames.configFile.rawValue
+    let filepath = path + "/" + ToDoCoNames.configFile
 
     var fileContent = ""
 

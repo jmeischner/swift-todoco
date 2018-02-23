@@ -35,7 +35,23 @@ func createToDoCoConfig(atPath: String, answers: [String: Answer]) {
   }
 }
 
-func initToDoCoProject(atPath: String) {
+func createToDoCoIgnore(atPath: String) {
+  
+}
+
+func initToDoCoProjectWithToDoCoConfig(atPath: String) {
   let answers = askQuestions(atPath: atPath)
   createToDoCoConfig(atPath: atPath, answers: answers)
+}
+
+func initToDoCoProject(atPath: String) {
+
+  do {
+    try ToDoCoIgnore.writeTemplate(atRoot: atPath)
+  } catch ToDoCoConfigError.ignoreFileCanNotBeWritten {
+    print("Error: It was not possible to write \(ToDoCoNames.ignoreFile).".red)
+  } catch {
+    print("Error: \(error)".red)
+  }
+  
 }

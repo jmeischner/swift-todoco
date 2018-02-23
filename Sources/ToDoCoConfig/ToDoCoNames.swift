@@ -1,5 +1,4 @@
-public enum ToDoCoNames: String {
-
-  case configFile = ".todococonfig"
-
+public struct ToDoCoNames {
+  public static let configFile = ".todococonfig"
+  public static let ignoreFile = ".todocoignore"
 }
