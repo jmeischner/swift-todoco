@@ -18,19 +18,22 @@ public class ToDoCoReader {
         var result = [ToDo]()
         
         for file in files {
-            let content = try String(contentsOfFile: file)
-            let lines = content.split(separator: "\n", omittingEmptySubsequences: false).map{ String($0) }
+            // todo: don't try to read binaries, implement better handling!
+            let tryContent = try? String(contentsOfFile: file)
+            if let content = tryContent {
+                let lines = content.split(separator: "\n", omittingEmptySubsequences: false).map{ String($0) }
 
-            for (index, line) in lines.enumerated() {
-                let matches = ToDo.pattern.matches(in: line, range: NSMakeRange(0, line.count))
-                if matches.count > 0 {
-                    if #available(OSX 10.13, *) {
-                        let todoRange = Range(matches[0].range(withName: "todo"), in: line)
-                        if let range = todoRange {
-                            let text = String(line[range])
-                            let linenumber = UInt(index + 1)
-                            let todo = ToDo(text: text, line: linenumber, file: file)
-                            result.append(todo)
+                for (index, line) in lines.enumerated() {
+                    let matches = ToDo.pattern.matches(in: line, range: NSMakeRange(0, line.count))
+                    if matches.count > 0 {
+                        if #available(OSX 10.13, *) {
+                            let todoRange = Range(matches[0].range(withName: "todo"), in: line)
+                            if let range = todoRange {
+                                let text = String(line[range])
+                                let linenumber = UInt(index + 1)
+                                let todo = ToDo(text: text, line: linenumber, file: file)
+                                result.append(todo)
+                            }
                         }
                     }
                 }

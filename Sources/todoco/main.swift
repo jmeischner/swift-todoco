@@ -11,7 +11,8 @@ let main = Group {
   }
 
   $0.command("list",
-    Option("path", default: ".", description: "Path to the new todoco project.")
+    Option("path", default: ".", description: "Path to the new todoco project."),
+    description: "List the ToDos of the current project."
   ) { path in
     listToDos(atPath: path)
   }

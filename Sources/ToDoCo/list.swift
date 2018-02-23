@@ -9,7 +9,7 @@ func listToDos(atPath: String) {
         let config = try getToDoCoConfig(atPath: atPath)
         let reader = ToDoCoReader(config: config)
         let todos = try reader.read()
-        
+
         let todosByFiles = Dictionary(grouping: todos, by: { $0.file })
 
         for (file, todos) in todosByFiles {
