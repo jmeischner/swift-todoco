@@ -13,10 +13,15 @@ let main = Group {
   }
 
   $0.command("list",
-    Option("path", default: ".", description: "Path to the new todoco project."),
+    Option("path", default: ".", flag: "p", description: "Path to the new todoco project."),
+    Flag("files", default: false, flag: "f", description: "List all files which are not ignored."),
     description: "List the ToDos of the current project."
-  ) { path in
-    listToDos(atPath: path)
+  ) { path, files in
+    if files {
+      listFileWhichAreNotIgnored(atPath: path)
+    } else {
+      listToDos(atPath: path)
+    }
   }
 }
 

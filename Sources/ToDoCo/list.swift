@@ -4,6 +4,21 @@ import ToDoCoConfig
 import ToDoCoReader
 import Rainbow
 
+func listFileWhichAreNotIgnored(atPath: String) {
+    do {
+        let ignore = ToDoCoIgnore(atRoot: atPath)
+        let files = try ignore.files()
+
+        for file in files {
+            print(file)
+        }
+    } catch ToDoCoConfigError.ignoreFileCouldNotBeRead {
+        print("Error: It was not possible to read \(ToDoCoNames.ignoreFile).".red)
+    } catch {
+        print("An Error Occured: \(error)".red)
+    } 
+}
+
 func listToDos(atPath: String) {
     do {
         let ignore = ToDoCoIgnore(atRoot: atPath)
