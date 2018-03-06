@@ -52,7 +52,7 @@ func listToDos(atPath: String) {
                 let linenumber = padLeft(String(todo.line), width: 4)
                 print(" \(linenumber):".blue + " \(todo.text)")
             }
-            print()   
+            print()
         }
         print(padLeft("Found \(todos.count) Todos in \(todosByFiles.count) Files".green, width: 76))
         print(String(repeating: "-", count: 67).yellow)

@@ -3,7 +3,7 @@ import Foundation
 public class ToDo {
     // Todo: Match only in comments for all languages
     public static let pattern = try! NSRegularExpression(
-        pattern: ".*(?<=todo:\\s?)(?<todo>.*)$",
+        pattern: ".*(?<=todo:\\s?)(?<todo>.*)",
         options: [.caseInsensitive]
     )
 
