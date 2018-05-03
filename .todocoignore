@@ -2,3 +2,6 @@
 
 .git
 *.sublime*
+.swift-version
+Package.resolved
+install.sh

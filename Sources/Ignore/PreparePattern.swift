@@ -7,6 +7,8 @@ struct GlobCase {
 
 let containsPattern = "Pattern/|/Pattern$|/Pattern/|Pattern$"
 
+// Todo: for example ".todocoignore" should ignore all files with this name, for now it ignores only in first directory level
+
 let cases = [
     // One star between slashes
     GlobCase(
